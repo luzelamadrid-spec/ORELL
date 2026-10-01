@@ -1,0 +1,1875 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ORELL | Fashion Store</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f7f7f7;
+  color:#111;
+  padding-bottom:85px;
+}
+
+button{
+  cursor:pointer;
+}
+
+header{
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:100;
+  padding:15px;
+  border-bottom:1px solid #ddd;
+}
+
+.header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:bold;
+  letter-spacing:5px;
+  cursor:pointer;
+}
+
+.header-icons{
+  display:flex;
+  gap:18px;
+  font-size:23px;
+}
+
+.header-icon{
+  cursor:pointer;
+}
+
+.search-box{
+  margin-top:14px;
+  display:flex;
+  background:#f1f1f1;
+  border-radius:25px;
+  padding:5px 10px;
+}
+
+.search-box input{
+  flex:1;
+  border:0;
+  outline:0;
+  background:transparent;
+  padding:10px;
+  font-size:15px;
+}
+
+.search-box button{
+  border:0;
+  background:transparent;
+  font-size:20px;
+}
+
+.page{
+  display:none;
+  max-width:950px;
+  margin:auto;
+  padding:20px;
+}
+
+.page.active{
+  display:block;
+}
+
+.banner{
+  height:230px;
+  border-radius:20px;
+  background-image:url("https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1000&q=80");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:flex-end;
+  padding:25px;
+  margin-bottom:25px;
+  color:white;
+}
+
+.banner h1{
+  font-size:30px;
+  text-shadow:0 2px 6px #000;
+}
+
+h2{
+  margin-bottom:10px;
+}
+
+.subtitle{
+  color:#777;
+  margin-bottom:20px;
+}
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-bottom:30px;
+}
+
+.category{
+  height:140px;
+  border-radius:18px;
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:flex-end;
+  padding:15px;
+  color:white;
+  font-size:19px;
+  font-weight:bold;
+  text-shadow:0 2px 5px #000;
+  cursor:pointer;
+}
+
+.mujer{
+  background-image:url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80");
+}
+
+.hombre{
+  background-image:url("https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=600&q=80");
+}
+
+.nino{
+  background-image:url("https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=600&q=80");
+}
+
+.nina{
+  background-image:url("https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=600&q=80");
+}
+
+.unisex{
+  background-image:url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80");
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.product-card{
+  background:white;
+  border-radius:18px;
+  padding:12px;
+  box-shadow:0 2px 10px #ddd;
+}
+
+.product-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+.product-info{
+  padding:12px 3px;
+}
+
+.product-info h3{
+  margin-bottom:7px;
+}
+
+.price{
+  font-size:20px;
+  font-weight:bold;
+  margin:8px 0;
+}
+
+.description{
+  color:#666;
+  line-height:1.4;
+  margin-bottom:12px;
+}
+
+.button{
+  width:100%;
+  padding:13px;
+  border:0;
+  border-radius:25px;
+  background:#111;
+  color:white;
+  font-size:15px;
+  margin-top:7px;
+}
+
+.button:hover{
+  opacity:.8;
+}
+
+.favorite-button{
+  width:42px;
+  height:42px;
+  border:0;
+  border-radius:50%;
+  background:white;
+  box-shadow:0 2px 7px #aaa;
+  font-size:21px;
+  margin-top:8px;
+}
+
+.cart-item{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 2px 8px #ddd;
+}
+
+.cart-item h3{
+  margin-bottom:8px;
+}
+
+.quantity{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin:15px 0;
+}
+
+.quantity button{
+  width:34px;
+  height:34px;
+  border:0;
+  border-radius:50%;
+  background:#111;
+  color:white;
+  font-size:18px;
+}
+
+.total{
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  font-size:21px;
+  font-weight:bold;
+  box-shadow:0 2px 8px #ddd;
+}
+
+.result{
+  background:white;
+  padding:18px;
+  border-radius:18px;
+  margin-top:20px;
+}
+
+.success{
+  background:#e9f7e9;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+}
+
+.success h2{
+  font-size:26px;
+}
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:75px;
+  background:white;
+  border-top:1px solid #ddd;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:200;
+}
+
+.nav-item{
+  text-align:center;
+  font-size:10px;
+  color:#555;
+  cursor:pointer;
+}
+
+.nav-item span{
+  display:block;
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+@media(min-width:700px){
+  .categories{
+    grid-template-columns:repeat(5,1fr);
+  }
+
+  .product-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="header-top">
+
+    <div class="logo" onclick="showPage('inicio')">
+      ORELL
+    </div>
+
+    <div class="header-icons">
+
+      <div class="header-icon" onclick="showPage('gustos')">
+        ♡
+      </div>
+
+      <div class="header-icon" onclick="showPage('carrito')">
+        🛒
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="search-box">
+
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Buscar en ORELL..."
+      onkeyup="searchEnter(event)"
+    >
+
+    <button onclick="searchProduct()">
+      🔎
+    </button>
+
+  </div>
+
+</header>
+
+
+<section id="inicio" class="page active">
+
+  <div class="banner">
+    <h1>Tu estilo. Tu mundo.</h1>
+  </div>
+
+  <h2>Categorías</h2>
+
+  <p class="subtitle">
+    Encuentra tu estilo en ORELL.
+  </p>
+
+  <div class="categories">
+
+    <div class="category mujer" onclick="showPage('mujer')">
+      Mujer
+    </div>
+
+    <div class="category hombre" onclick="showPage('hombre')">
+      Hombre
+    </div>
+
+    <div class="category nino" onclick="showPage('nino')">
+      Niño
+    </div>
+
+    <div class="category nina" onclick="showPage('nina')">
+      Niña
+    </div>
+
+    <div class="category unisex" onclick="showPage('unisex')">
+      Unisex
+    </div>
+
+  </div>
+
+  <h2>Producto destacado</h2>
+
+  <div class="product-grid">
+
+    <div class="product-card">
+
+      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80">
+
+      <div class="product-info">
+
+        <h3>Camiseta ORELL</h3>
+
+        <div class="price">
+          $50.000
+        </div>
+
+        <p class="description">
+          Camiseta de estilo moderno,
+          cómoda y versátil.
+        </p>
+
+        <button class="button" onclick="addToCart()">
+          🛒 Agregar al carrito
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="producto" class="page">
+
+  <h2>Camiseta ORELL</h2>
+
+  <p class="subtitle">
+    Detalles del producto
+  </p>
+
+  <div class="product-card">
+
+    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80">
+
+    <div class="product-info">
+
+      <h2>Camiseta ORELL</h2>
+
+      <div class="price">
+        $50.000
+      </div>
+
+      <p class="description">
+        Camiseta de estilo moderno y cómodo.
+        Ideal para combinar con diferentes estilos.
+      </p>
+
+      <button class="favorite-button" onclick="addFavorite()">
+        ♡
+      </button>
+
+      <button class="button" onclick="addToCart()">
+        🛒 Agregar al carrito
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="mujer" class="page">
+
+  <h2>Mujer 👗</h2>
+
+  <p class="subtitle">
+    Moda para mujer.
+  </p>
+
+  <div class="product-grid">
+
+    <div class="product-card">
+
+      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80">
+
+      <div class="product-info">
+
+        <h3>Camiseta ORELL</h3>
+
+        <div class="price">
+          $50.000
+        </div>
+
+        <button class="button" onclick="addToCart()">
+          Agregar al carrito
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="hombre" class="page">
+
+  <h2>Hombre 👔</h2>
+
+  <p class="subtitle">
+    Moda para hombre.
+  </p>
+
+  <div class="result">
+    Próximamente agregaremos los productos de hombre.
+  </div>
+
+</section>
+
+
+<section id="nino" class="page">
+
+  <h2>Niño 🧒</h2>
+
+  <div class="result">
+    Próximamente agregaremos los productos para niño.
+  </div>
+
+</section>
+
+
+<section id="nina" class="page">
+
+  <h2>Niña 👧</h2>
+
+  <div class="result">
+    Próximamente agregaremos los productos para niña.
+  </div>
+
+</section>
+
+
+<section id="unisex" class="page">
+
+  <h2>Unisex 🧥</h2>
+
+  <div class="result">
+    Próximamente agregaremos los productos unisex.
+  </div>
+
+</section>
+
+
+<section id="carrito" class="page">
+
+  <h2>Mi carrito 🛒</h2>
+
+  <div id="cartContent">
+
+    <p class="subtitle">
+      Tu carrito está vacío.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section id="yo" class="page">
+
+  <h2>Yo 👤</h2>
+
+  <p class="subtitle">
+    Tu cuenta de ORELL.
+  </p>
+
+  <div class="result">
+
+    <h3>Mi perfil</h3>
+
+    <br>
+
+    Aquí podremos agregar:
+
+    <br><br>
+
+    • Nombre<br>
+    • Dirección<br>
+    • Datos de entrega<br>
+    • Pedidos<br>
+    • Configuración
+
+  </div>
+
+</section>
+
+
+<section id="compras" class="page">
+
+  <h2>Mis compras 🛍️</h2>
+
+  <div class="result">
+    Todavía no tienes compras.
+  </div>
+
+</section>
+
+
+<section id="gustos" class="page">
+
+  <h2>Mis gustos ✨</h2>
+
+  <div class="result">
+    Aquí aparecerán tus productos favoritos.
+  </div>
+
+</section>
+
+
+<section id="recomendadas" class="page">
+
+  <h2>Recomendadas ⭐</h2>
+
+  <div class="product-card">
+
+    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80">
+
+    <div class="product-info">
+
+      <h3>Camiseta ORELL</h3>
+
+      <div class="price">
+        $50.000
+      </div>
+
+      <button class="button" onclick="addToCart()">
+        🛒 Comprar
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="resultados" class="page">
+
+  <h2>Resultados 🔎</h2>
+
+  <div id="searchResults"></div>
+
+</section>
+
+
+<section id="confirmacion" class="page">
+
+  <div class="success">
+
+    <h2>✅ Pedido de prueba</h2>
+
+    <br>
+
+    <p>
+      ¡La prueba de compra funcionó!
+    </p>
+
+    <br>
+
+    <p>
+      Aquí posteriormente conectaremos
+      el sistema de pagos.
+    </p>
+
+    <button class="button" onclick="showPage('inicio')">
+      Volver a ORELL
+    </button>
+
+  </div>
+
+</section>
+
+
+<nav class="bottom-nav">
+
+  <div class="nav-item" onclick="showPage('inicio')">
+    <span>🏠</span>
+    Inicio
+  </div>
+
+  <div class="nav-item" onclick="showPage('yo')">
+    <span>👤</span>
+    Yo
+  </div>
+
+  <div class="nav-item" onclick="showPage('compras')">
+    <span>🛍️</span>
+    Mis compras
+  </div>
+
+  <div class="nav-item" onclick="showPage('gustos')">
+    <span>✨</span>
+    Mis gustos
+  </div>
+
+  <div class="nav-item" onclick="showPage('recomendadas')">
+    <span>⭐</span>
+    Recomendadas
+  </div>
+
+</nav>
+
+
+<script>
+
+let quantity = 0;
+let favorite = false;
+
+
+function showPage(page){
+
+  let pages = document.querySelectorAll(".page");
+
+  pages.forEach(function(p){
+    p.classList.remove("active");
+  });
+
+  let selected = document.getElementById(page);
+
+  if(selected){
+    selected.classList.add("active");
+    window.scrollTo(0,0);
+  }
+
+}
+
+
+function addToCart(){
+
+  quantity++;
+
+  updateCart();
+
+  showPage("carrito");
+
+}
+
+
+function updateCart(){
+
+  let cart = document.getElementById("cartContent");
+
+  if(quantity === 0){
+
+    cart.innerHTML = `
+      <p class="subtitle">
+        Tu carrito está vacío.
+      </p>
+    `;
+
+    return;
+  }
+
+  let total = quantity * 50000;
+
+  cart.innerHTML = `
+
+    <div class="cart-item">
+
+      <h3>Camiseta ORELL</h3>
+
+      <p>$50.000 cada una</p>
+
+      <div class="quantity">
+
+        <button onclick="decrease()">
+          −
+        </button>
+
+        <strong>
+          ${quantity}
+        </strong>
+
+        <button onclick="increase()">
+          +
+        </button>
+
+      </div>
+
+      <button class="button" onclick="removeCart()">
+        Eliminar
+      </button>
+
+    </div>
+
+    <div class="total">
+
+      Total:
+      $${total.toLocaleString("es-CO")}
+
+      <button class="button" onclick="buyTest()">
+        💳 Comprar
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+function increase(){
+
+  quantity++;
+
+  updateCart();
+
+}
+
+
+function decrease(){
+
+  if(quantity > 1){
+    quantity--;
+  }
+
+  updateCart();
+
+}
+
+
+function removeCart(){
+
+  quantity = 0;
+
+  updateCart();
+
+}
+
+
+function buyTest(){
+
+  showPage("confirmacion");
+
+}
+
+
+function addFavorite(){
+
+  favorite = !favorite;
+
+  if(favorite){
+
+    alert("❤️ Producto agregado a Mis gustos");
+
+  }else{
+
+    alert("Producto eliminado de Mis gustos");
+
+  }
+
+}
+
+
+function searchEnter(event){
+
+  if(event.key === "Enter"){
+    searchProduct();
+  }
+
+}
+
+
+function searchProduct(){
+
+  let text =
+    document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
+
+  if(text === ""){
+
+    alert("Escribe algo para buscar.");
+
+    return;
+
+  }
+
+  let productName =
+    "camiseta orell";
+
+  let category =
+    "mujer";
+
+  let description =
+    "camiseta moderna comoda ropa";
+
+  let information =
+    productName + " " +
+    category + " " +
+    description;
+
+  if(information.includes(text)){
+
+    showPage("producto");
+
+  }else{
+
+    showPage("resultados");
+
+    document
+    .getElementById("searchResults")
+    .innerHTML = `
+
+      <div class="result">
+
+        <h3>
+          No encontramos "${text}"
+        </h3>
+
+        <br>
+
+        <p>
+          Intenta buscar por nombre,
+          categoría o tipo de producto.
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ORELL | Fashion Store</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f7f7f7;
+  color:#111;
+  padding-bottom:85px;
+}
+
+button{
+  cursor:pointer;
+}
+
+header{
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:100;
+  padding:15px;
+  border-bottom:1px solid #ddd;
+}
+
+.header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:bold;
+  letter-spacing:5px;
+  cursor:pointer;
+}
+
+.header-icons{
+  display:flex;
+  gap:18px;
+  font-size:23px;
+}
+
+.header-icon{
+  cursor:pointer;
+}
+
+.search-box{
+  margin-top:14px;
+  display:flex;
+  background:#f1f1f1;
+  border-radius:25px;
+  padding:5px 10px;
+}
+
+.search-box input{
+  flex:1;
+  border:0;
+  outline:0;
+  background:transparent;
+  padding:10px;
+  font-size:15px;
+}
+
+.search-box button{
+  border:0;
+  background:transparent;
+  font-size:20px;
+}
+
+.page{
+  display:none;
+  max-width:950px;
+  margin:auto;
+  padding:20px;
+}
+
+.page.active{
+  display:block;
+}
+
+.banner{
+  height:230px;
+  border-radius:20px;
+  background-image:url("https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1000&q=80");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:flex-end;
+  padding:25px;
+  margin-bottom:25px;
+  color:white;
+}
+
+.banner h1{
+  font-size:30px;
+  text-shadow:0 2px 6px #000;
+}
+
+h2{
+  margin-bottom:10px;
+}
+
+.subtitle{
+  color:#777;
+  margin-bottom:20px;
+}
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-bottom:30px;
+}
+
+.category{
+  height:140px;
+  border-radius:18px;
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:flex-end;
+  padding:15px;
+  color:white;
+  font-size:19px;
+  font-weight:bold;
+  text-shadow:0 2px 5px #000;
+  cursor:pointer;
+}
+
+.mujer{
+  background-image:url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80");
+}
+
+.hombre{
+  background-image:url("https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=600&q=80");
+}
+
+.nino{
+  background-image:url("https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=600&q=80");
+}
+
+.nina{
+  background-image:url("https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=600&q=80");
+}
+
+.unisex{
+  background-image:url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80");
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.product-card{
+  background:white;
+  border-radius:18px;
+  padding:12px;
+  box-shadow:0 2px 10px #ddd;
+}
+
+.product-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+.product-info{
+  padding:12px 3px;
+}
+
+.product-info h3{
+  margin-bottom:7px;
+}
+
+.price{
+  font-size:20px;
+  font-weight:bold;
+  margin:8px 0;
+}
+
+.description{
+  color:#666;
+  line-height:1.4;
+  margin-bottom:12px;
+}
+
+.button{
+  width:100%;
+  padding:13px;
+  border:0;
+  border-radius:25px;
+  background:#111;
+  color:white;
+  font-size:15px;
+  margin-top:7px;
+}
+
+.button:hover{
+  opacity:.8;
+}
+
+.favorite-button{
+  width:42px;
+  height:42px;
+  border:0;
+  border-radius:50%;
+  background:white;
+  box-shadow:0 2px 7px #aaa;
+  font-size:21px;
+  margin-top:8px;
+}
+
+.cart-item{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 2px 8px #ddd;
+}
+
+.cart-item h3{
+  margin-bottom:8px;
+}
+
+.quantity{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin:15px 0;
+}
+
+.quantity button{
+  width:34px;
+  height:34px;
+  border:0;
+  border-radius:50%;
+  background:#111;
+  color:white;
+  font-size:18px;
+}
+
+.total{
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  font-size:21px;
+  font-weight:bold;
+  box-shadow:0 2px 8px #ddd;
+}
+
+.result{
+  background:white;
+  padding:18px;
+  border-radius:18px;
+  margin-top:20px;
+}
+
+.success{
+  background:#e9f7e9;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+}
+
+.success h2{
+  font-size:26px;
+}
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:75px;
+  background:white;
+  border-top:1px solid #ddd;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:200;
+}
+
+.nav-item{
+  text-align:center;
+  font-size:10px;
+  color:#555;
+  cursor:pointer;
+}
+
+.nav-item span{
+  display:block;
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+@media(min-width:700px){
+  .categories{
+    grid-template-columns:repeat(5,1fr);
+  }
+
+  .product-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="header-top">
+
+    <div class="logo" onclick="showPage('inicio')">
+      ORELL
+    </div>
+
+    <div class="header-icons">
+
+      <div class="header-icon" onclick="showPage('gustos')">
+        ♡
+      </div>
+
+      <div class="header-icon" onclick="showPage('carrito')">
+        🛒
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="search-box">
+
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Buscar en ORELL..."
+      onkeyup="searchEnter(event)"
+    >
+
+    <button onclick="searchProduct()">
+      🔎
+    </button>
+
+  </div>
+
+</header>
+
+
+<section id="inicio" class="page active">
+
+  <div class="banner">
+    <h1>Tu estilo. Tu mundo.</h1>
+  </div>
+
+  <h2>Categorías</h2>
+
+  <p class="subtitle">
+    Encuentra tu estilo en ORELL.
+  </p>
+
+  <div class="categories">
+
+    <div class="category mujer" onclick="showPage('mujer')">
+      Mujer
+    </div>
+
+    <div class="category hombre" onclick="showPage('hombre')">
+      Hombre
+    </div>
+
+    <div class="category nino" onclick="showPage('nino')">
+      Niño
+    </div>
+
+    <div class="category nina" onclick="showPage('nina')">
+      Niña
+    </div>
+
+    <div class="category unisex" onclick="showPage('unisex')">
+      Unisex
+    </div>
+
+  </div>
+
+  <h2>Producto destacado</h2>
+
+  <div class="product-grid">
+
+    <div class="product-card">
+
+      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80">
+
+      <div class="product-info">
+
+        <h3>Camiseta ORELL</h3>
+
+        <div class="price">
+          $50.000
+        </div>
+
+        <p class="description">
+          Camiseta de estilo moderno,
+          cómoda y versátil.
+        </p>
+
+        <button class="button" onclick="addToCart()">
+          🛒 Agregar al carrito
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="producto" class="page">
+
+  <h2>Camiseta ORELL</h2>
+
+  <p class="subtitle">
+    Detalles del producto
+  </p>
+
+  <div class="product-card">
+
+    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80">
+
+    <div class="product-info">
+
+      <h2>Camiseta ORELL</h2>
+
+      <div class="price">
+        $50.000
+      </div>
+
+      <p class="description">
+        Camiseta de estilo moderno y cómodo.
+        Ideal para combinar con diferentes estilos.
+      </p>
+
+      <button class="favorite-button" onclick="addFavorite()">
+        ♡
+      </button>
+
+      <button class="button" onclick="addToCart()">
+        🛒 Agregar al carrito
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="mujer" class="page">
+
+  <h2>Mujer 👗</h2>
+
+  <p class="subtitle">
+    Moda para mujer.
+  </p>
+
+  <div class="product-grid">
+
+    <div class="product-card">
+
+      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80">
+
+      <div class="product-info">
+
+        <h3>Camiseta ORELL</h3>
+
+        <div class="price">
+          $50.000
+        </div>
+
+        <button class="button" onclick="addToCart()">
+          Agregar al carrito
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="hombre" class="page">
+
+  <h2>Hombre 👔</h2>
+
+  <p class="subtitle">
+    Moda para hombre.
+  </p>
+
+  <div class="result">
+    Próximamente agregaremos los productos de hombre.
+  </div>
+
+</section>
+
+
+<section id="nino" class="page">
+
+  <h2>Niño 🧒</h2>
+
+  <div class="result">
+    Próximamente agregaremos los productos para niño.
+  </div>
+
+</section>
+
+
+<section id="nina" class="page">
+
+  <h2>Niña 👧</h2>
+
+  <div class="result">
+    Próximamente agregaremos los productos para niña.
+  </div>
+
+</section>
+
+
+<section id="unisex" class="page">
+
+  <h2>Unisex 🧥</h2>
+
+  <div class="result">
+    Próximamente agregaremos los productos unisex.
+  </div>
+
+</section>
+
+
+<section id="carrito" class="page">
+
+  <h2>Mi carrito 🛒</h2>
+
+  <div id="cartContent">
+
+    <p class="subtitle">
+      Tu carrito está vacío.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section id="yo" class="page">
+
+  <h2>Yo 👤</h2>
+
+  <p class="subtitle">
+    Tu cuenta de ORELL.
+  </p>
+
+  <div class="result">
+
+    <h3>Mi perfil</h3>
+
+    <br>
+
+    Aquí podremos agregar:
+
+    <br><br>
+
+    • Nombre<br>
+    • Dirección<br>
+    • Datos de entrega<br>
+    • Pedidos<br>
+    • Configuración
+
+  </div>
+
+</section>
+
+
+<section id="compras" class="page">
+
+  <h2>Mis compras 🛍️</h2>
+
+  <div class="result">
+    Todavía no tienes compras.
+  </div>
+
+</section>
+
+
+<section id="gustos" class="page">
+
+  <h2>Mis gustos ✨</h2>
+
+  <div class="result">
+    Aquí aparecerán tus productos favoritos.
+  </div>
+
+</section>
+
+
+<section id="recomendadas" class="page">
+
+  <h2>Recomendadas ⭐</h2>
+
+  <div class="product-card">
+
+    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80">
+
+    <div class="product-info">
+
+      <h3>Camiseta ORELL</h3>
+
+      <div class="price">
+        $50.000
+      </div>
+
+      <button class="button" onclick="addToCart()">
+        🛒 Comprar
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="resultados" class="page">
+
+  <h2>Resultados 🔎</h2>
+
+  <div id="searchResults"></div>
+
+</section>
+
+
+<section id="confirmacion" class="page">
+
+  <div class="success">
+
+    <h2>✅ Pedido de prueba</h2>
+
+    <br>
+
+    <p>
+      ¡La prueba de compra funcionó!
+    </p>
+
+    <br>
+
+    <p>
+      Aquí posteriormente conectaremos
+      el sistema de pagos.
+    </p>
+
+    <button class="button" onclick="showPage('inicio')">
+      Volver a ORELL
+    </button>
+
+  </div>
+
+</section>
+
+
+<nav class="bottom-nav">
+
+  <div class="nav-item" onclick="showPage('inicio')">
+    <span>🏠</span>
+    Inicio
+  </div>
+
+  <div class="nav-item" onclick="showPage('yo')">
+    <span>👤</span>
+    Yo
+  </div>
+
+  <div class="nav-item" onclick="showPage('compras')">
+    <span>🛍️</span>
+    Mis compras
+  </div>
+
+  <div class="nav-item" onclick="showPage('gustos')">
+    <span>✨</span>
+    Mis gustos
+  </div>
+
+  <div class="nav-item" onclick="showPage('recomendadas')">
+    <span>⭐</span>
+    Recomendadas
+  </div>
+
+</nav>
+
+
+<script>
+
+let quantity = 0;
+let favorite = false;
+
+
+function showPage(page){
+
+  let pages = document.querySelectorAll(".page");
+
+  pages.forEach(function(p){
+    p.classList.remove("active");
+  });
+
+  let selected = document.getElementById(page);
+
+  if(selected){
+    selected.classList.add("active");
+    window.scrollTo(0,0);
+  }
+
+}
+
+
+function addToCart(){
+
+  quantity++;
+
+  updateCart();
+
+  showPage("carrito");
+
+}
+
+
+function updateCart(){
+
+  let cart = document.getElementById("cartContent");
+
+  if(quantity === 0){
+
+    cart.innerHTML = `
+      <p class="subtitle">
+        Tu carrito está vacío.
+      </p>
+    `;
+
+    return;
+  }
+
+  let total = quantity * 50000;
+
+  cart.innerHTML = `
+
+    <div class="cart-item">
+
+      <h3>Camiseta ORELL</h3>
+
+      <p>$50.000 cada una</p>
+
+      <div class="quantity">
+
+        <button onclick="decrease()">
+          −
+        </button>
+
+        <strong>
+          ${quantity}
+        </strong>
+
+        <button onclick="increase()">
+          +
+        </button>
+
+      </div>
+
+      <button class="button" onclick="removeCart()">
+        Eliminar
+      </button>
+
+    </div>
+
+    <div class="total">
+
+      Total:
+      $${total.toLocaleString("es-CO")}
+
+      <button class="button" onclick="buyTest()">
+        💳 Comprar
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+function increase(){
+
+  quantity++;
+
+  updateCart();
+
+}
+
+
+function decrease(){
+
+  if(quantity > 1){
+    quantity--;
+  }
+
+  updateCart();
+
+}
+
+
+function removeCart(){
+
+  quantity = 0;
+
+  updateCart();
+
+}
+
+
+function buyTest(){
+
+  showPage("confirmacion");
+
+}
+
+
+function addFavorite(){
+
+  favorite = !favorite;
+
+  if(favorite){
+
+    alert("❤️ Producto agregado a Mis gustos");
+
+  }else{
+
+    alert("Producto eliminado de Mis gustos");
+
+  }
+
+}
+
+
+function searchEnter(event){
+
+  if(event.key === "Enter"){
+    searchProduct();
+  }
+
+}
+
+
+function searchProduct(){
+
+  let text =
+    document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
+
+  if(text === ""){
+
+    alert("Escribe algo para buscar.");
+
+    return;
+
+  }
+
+  let productName =
+    "camiseta orell";
+
+  let category =
+    "mujer";
+
+  let description =
+    "camiseta moderna comoda ropa";
+
+  let information =
+    productName + " " +
+    category + " " +
+    description;
+
+  if(information.includes(text)){
+
+    showPage("producto");
+
+  }else{
+
+    showPage("resultados");
+
+    document
+    .getElementById("searchResults")
+    .innerHTML = `
+
+      <div class="result">
+
+        <h3>
+          No encontramos "${text}"
+        </h3>
+
+        <br>
+
+        <p>
+          Intenta buscar por nombre,
+          categoría o tipo de 
